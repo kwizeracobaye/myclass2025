@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Users, CircleUser as UserCircle, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart, LogOut } from 'lucide-react';
+import { Home, Users, CircleUser as UserCircle, Building2, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart, LogOut } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 
 interface SidebarProps {
@@ -15,13 +15,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onViewChange }) =
     { id: 'dashboard', label: 'Dashboard', icon: Home, forAdmin: false },
     ...(isAdmin ? [
       { id: 'students', label: 'Students', icon: Users, forAdmin: true },
+      { id: 'colleges', label: 'Colleges & Faculties', icon: Building2, forAdmin: true },
       { id: 'staff', label: 'Staff', icon: UserCircle, forAdmin: true },
       { id: 'rooms', label: 'Lecture Rooms', icon: DoorOpen, forAdmin: true },
       { id: 'medical', label: 'Medical Records', icon: Activity, forAdmin: true },
       { id: 'materials', label: 'Materials', icon: Package, forAdmin: true },
       { id: 'practice', label: 'External Practice', icon: Plane, forAdmin: true },
       { id: 'announcements', label: 'Announcements', icon: Bell, forAdmin: true },
-      { id: 'chatbot', label: 'Chatbot Messages', icon: MessageCircle, forAdmin: true },
+      { id: 'chatbot', label: 'Chatbot', icon: MessageCircle, forAdmin: true },
       { id: 'reports', label: 'Reports', icon: BarChart, forAdmin: true },
     ] : []),
   ];

@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LoginForm } from './components/auth/LoginForm';
 import { Sidebar } from './components/layout/Sidebar';
 import { DashboardView } from './components/dashboard/DashboardView';
+import { EnhancedDashboard } from './components/dashboard/EnhancedDashboard';
 import { StudentsView } from './components/students/StudentsView';
 import { StaffView } from './components/staff/StaffView';
 import { RoomsView } from './components/rooms/RoomsView';
@@ -32,7 +33,7 @@ const AppContent: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case 'dashboard':
-        return <DashboardView />;
+        return <EnhancedDashboard onNavigate={setCurrentView} />;
       case 'students':
         return <StudentsView />;
       case 'staff':

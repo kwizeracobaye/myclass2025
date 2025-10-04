@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Users, UserCircle, Building2, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart } from 'lucide-react';
+import { Users, CircleUser as UserCircle, Building2, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart } from 'lucide-react';
 
 interface Stats {
   totalStudents: number;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Plus, Edit2, Trash2, ChevronDown, ChevronRight, Users } from 'lucide-react';
+import { Plus, CreditCard as Edit2, Trash2, ChevronDown, ChevronRight, Users } from 'lucide-react';
 
 interface College {
   id: string;

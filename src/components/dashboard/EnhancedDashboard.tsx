@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Users, CircleUser as UserCircle, Building2, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart } from 'lucide-react';
+import { Users, CircleUser as UserCircle, Building2, DoorOpen, Activity, Package, Plane, Bell, MessageCircle, BarChart, AlertTriangle } from 'lucide-react';
 
 interface Stats {
   totalStudents: number;
@@ -11,6 +11,7 @@ interface Stats {
   lowStockItems: number;
   upcomingPractice: number;
   pendingMessages: number;
+  totalIncidents: number;
 }
 
 interface DashboardCardProps {
@@ -52,6 +53,7 @@ export const EnhancedDashboard: React.FC<EnhancedDashboardProps> = ({ onNavigate
     lowStockItems: 0,
     upcomingPractice: 0,
     pendingMessages: 0,
+    totalIncidents: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -70,6 +72,7 @@ export const EnhancedDashboard: React.FC<EnhancedDashboardProps> = ({ onNavigate
         materialsRes,
         practiceRes,
         messagesRes,
+        incidentsRes,
       ] = await Promise.all([
         supabase.from('students').select('id', { count: 'exact', head: true }),
         supabase.from('staff').select('id', { count: 'exact', head: true }),
@@ -79,6 +82,7 @@ export const EnhancedDashboard: React.FC<EnhancedDashboardProps> = ({ onNavigate
         supabase.from('materials').select('id', { count: 'exact', head: true }).eq('status', 'low_stock'),
         supabase.from('external_practice_sessions').select('id', { count: 'exact', head: true }).eq('status', 'planned'),
         supabase.from('chatbot_messages').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
+        supabase.from('student_incidents').select('id', { count: 'exact', head: true }),
       ]);
 
       setStats({
@@ -90,6 +94,7 @@ export const EnhancedDashboard: React.FC<EnhancedDashboardProps> = ({ onNavigate
         lowStockItems: materialsRes.count || 0,
         upcomingPractice: practiceRes.count || 0,
         pendingMessages: messagesRes.count || 0,
+        totalIncidents: incidentsRes.count || 0,
       });
     } catch (error) {
       console.error('Error loading dashboard stats:', error);
@@ -108,13 +113,13 @@ export const EnhancedDashboard: React.FC<EnhancedDashboardProps> = ({ onNavigate
 
   const cards = [
     { title: 'Total Students', value: stats.totalStudents, icon: Users, color: 'bg-blue-500', view: 'students' },
-    { title: 'Colleges', value: stats.totalColleges, icon: Building2, color: 'bg-purple-500', view: 'colleges' },
+    { title: 'Colleges', value: stats.totalColleges, icon: Building2, color: 'bg-blue-500', view: 'colleges' },
+    { title: 'Student Incidents', value: stats.totalIncidents, icon: AlertTriangle, color: 'bg-red-500', view: 'incidents' },
     { title: 'Staff Members', value: stats.totalStaff, icon: UserCircle, color: 'bg-green-500', view: 'staff' },
     { title: 'Available Rooms', value: stats.availableRooms, icon: DoorOpen, color: 'bg-teal-500', view: 'rooms' },
-    { title: 'Active Medical Cases', value: stats.activePatients, icon: Activity, color: 'bg-red-500', view: 'medical' },
-    { title: 'Low Stock Items', value: stats.lowStockItems, icon: Package, color: 'bg-orange-500', view: 'materials' },
-    { title: 'Upcoming Practice', value: stats.upcomingPractice, icon: Plane, color: 'bg-indigo-500', view: 'practice' },
-    { title: 'Pending Messages', value: stats.pendingMessages, icon: MessageCircle, color: 'bg-pink-500', view: 'chatbot' },
+    { title: 'Active Medical Cases', value: stats.activePatients, icon: Activity, color: 'bg-orange-500', view: 'medical' },
+    { title: 'Low Stock Items', value: stats.lowStockItems, icon: Package, color: 'bg-amber-500', view: 'materials' },
+    { title: 'Upcoming Practice', value: stats.upcomingPractice, icon: Plane, color: 'bg-cyan-500', view: 'practice' },
   ];
 
   return (

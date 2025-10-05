@@ -5,6 +5,8 @@ import { Sidebar } from './components/layout/Sidebar';
 import { DashboardView } from './components/dashboard/DashboardView';
 import { EnhancedDashboard } from './components/dashboard/EnhancedDashboard';
 import { StudentsView } from './components/students/StudentsView';
+import { CollegesView } from './components/colleges/CollegesView';
+import { IncidentsView } from './components/incidents/IncidentsView';
 import { StaffView } from './components/staff/StaffView';
 import { RoomsView } from './components/rooms/RoomsView';
 import { MedicalView } from './components/medical/MedicalView';
@@ -36,6 +38,10 @@ const AppContent: React.FC = () => {
         return <EnhancedDashboard onNavigate={setCurrentView} />;
       case 'students':
         return <StudentsView />;
+      case 'colleges':
+        return <CollegesView />;
+      case 'incidents':
+        return <IncidentsView />;
       case 'staff':
         return <StaffView />;
       case 'rooms':

@@ -7,6 +7,7 @@ import { EnhancedDashboard } from './components/dashboard/EnhancedDashboard';
 import { StudentsView } from './components/students/StudentsView';
 import { CollegesView } from './components/colleges/CollegesView';
 import { IncidentsView } from './components/incidents/IncidentsView';
+import { HostelView } from './components/hostel/HostelView';
 import { StaffView } from './components/staff/StaffView';
 import { RoomsView } from './components/rooms/RoomsView';
 import { MedicalView } from './components/medical/MedicalView';
@@ -42,6 +43,8 @@ const AppContent: React.FC = () => {
         return <CollegesView />;
       case 'incidents':
         return <IncidentsView />;
+      case 'hostel':
+        return <HostelView />;
       case 'staff':
         return <StaffView />;
       case 'rooms':

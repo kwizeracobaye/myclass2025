@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Plus, Package, Edit2, Trash2, Search, Filter } from 'lucide-react';
+import { Plus, Package, CreditCard as Edit2, Trash2, Search, Filter } from 'lucide-react';
 
 interface Material {
   id: string;
